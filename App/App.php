@@ -32,8 +32,6 @@ class App
      */
     public function run(): void
     {
-
-
         $fileService = new FileService($this->basePath);
         $chapterConverter = new JsonChapterConverter();
         $audioSilenceParser = new XmlAudioSilenceSilenceParser($fileService);

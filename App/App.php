@@ -28,17 +28,11 @@ class App
     }
 
     /**
+     * @param array $params
      * @throws \Exception
      */
-    public function run(): void
+    public function run(array $params): void
     {
-        $params = getopt('', [
-            "path:",
-            "silence-chapter-duration:",
-            "max-segment-duration:",
-            "silence-segment-duration:",
-        ]);
-
         $fileService = new FileService($this->basePath);
         $chapterConverter = new JsonChapterConverter();
         $audioSilenceParser = new XmlAudioSilenceSilenceParser($fileService);

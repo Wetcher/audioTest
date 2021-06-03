@@ -48,6 +48,6 @@ class App
         $audioService = new AudioService($silenceService, $chapterService);
 
         $command = new ConvertSilencesIntoChaptersCommand($fileService, $audioSilenceParser, $chapterConverter, $audioService);
-        $command->execute($params);
+        $command->doExecute($params);
     }
 }

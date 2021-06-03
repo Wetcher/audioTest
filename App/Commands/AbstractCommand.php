@@ -9,28 +9,25 @@ abstract class AbstractCommand implements CommandInterface
 {
     /**
      * @var string[]
-     */
-    protected array $argumentOptions = [];
-
-    /**
-     * @var string[]
     */
     protected array $requiredOptions = [];
-
-    /**
-     * @var string[]
-     */
-    private array $arguments = [];
 
     /**
      * @param array $arguments
      *
      * @throws Exception
      */
-    public function execute(array $arguments): void
+    abstract public function execute(array $arguments);
+
+    /**
+     * @param array $arguments
+     *
+     * @throws Exception
+     */
+    public function doExecute(array $arguments): void
     {
-        $this->setArguments($arguments);
         $this->validateRequired($arguments);
+        $this->execute($arguments);
     }
 
     /**
@@ -50,14 +47,6 @@ abstract class AbstractCommand implements CommandInterface
         if(count($missingOptions) > 0) {
             throw new Exception(sprintf('Options "%s" are required', implode(',', $missingOptions)));
         }
-    }
-
-    /**
-     * @return array
-     */
-    protected function getArguments(): array
-    {
-        return $this->arguments;
     }
 
     /**

@@ -48,8 +48,6 @@ class ConvertSilencesIntoChaptersCommand extends AbstractCommand
      */
     public function __construct(FileServiceInterface $fileService, XmlAudioSilenceParserInterface $audioServiceParser, JsonChapterConverterInterface $chapterConverter, AudioServiceInterface $audioService)
     {
-        parent::__construct();
-
         $this->fileService = $fileService;
         $this->audioServiceParser = $audioServiceParser;
         $this->chapterConverter = $chapterConverter;
@@ -63,13 +61,10 @@ class ConvertSilencesIntoChaptersCommand extends AbstractCommand
      */
     public function execute(array $arguments): void
     {
-        parent::execute($arguments);
-
-        $args = $this->getArguments();
-        $path = $args['path'] ?? '';
-        $silenceChapterDuration = CarbonInterval::fromString(($args['silence-chapter-duration'] ?? ''))->total('milliseconds');
-        $maxSegmentDuration = CarbonInterval::fromString($args['max-segment-duration'] ?? '')->total('milliseconds');
-        $silenceSegmentDuration = CarbonInterval::fromString($args['silence-segment-duration'] ?? '')->total('milliseconds');
+        $path = $arguments['path'] ?? '';
+        $silenceChapterDuration = CarbonInterval::fromString(($arguments['silence-chapter-duration'] ?? ''))->total('milliseconds');
+        $maxSegmentDuration = CarbonInterval::fromString($arguments['max-segment-duration'] ?? '')->total('milliseconds');
+        $silenceSegmentDuration = CarbonInterval::fromString($arguments['silence-segment-duration'] ?? '')->total('milliseconds');
 
         if ($silenceChapterDuration <= $silenceSegmentDuration) {
             throw new Exception('Segment chapter silence duration is greater then chapter silence duration');

@@ -48,12 +48,4 @@ abstract class AbstractCommand implements CommandInterface
             throw new Exception(sprintf('Options "%s" are required', implode(',', $missingOptions)));
         }
     }
-
-    /**
-     * @param string[] $arguments
-     */
-    public function setArguments(array $arguments): void
-    {
-        $this->arguments = $arguments;
-    }
 }

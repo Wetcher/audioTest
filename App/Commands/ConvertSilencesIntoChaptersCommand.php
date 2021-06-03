@@ -3,9 +3,9 @@
 namespace App\Commands;
 
 use App\Service\ServiceInterface\AudioServiceInterface;
-use App\Service\ServiceInterface\XmlAudioSilenceParserInterface;
-use App\Service\ServiceInterface\JsonChapterConverterInterface;
 use App\Service\ServiceInterface\FileServiceInterface;
+use App\Service\ServiceInterface\JsonChapterConverterInterface;
+use App\Service\ServiceInterface\XmlAudioSilenceParserInterface;
 use Carbon\CarbonInterval;
 use Exception;
 
@@ -59,7 +59,7 @@ class ConvertSilencesIntoChaptersCommand extends AbstractCommand
      *
      * @throws Exception
      */
-    public function execute(array $arguments): void
+    protected function doExecute(array $arguments): void
     {
         $path = $arguments['path'] ?? '';
         $silenceChapterDuration = CarbonInterval::fromString(($arguments['silence-chapter-duration'] ?? ''))->total('milliseconds');

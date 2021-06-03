@@ -11,5 +11,5 @@ interface CommandInterface
      *
      * @throws Exception
      */
-    public function doExecute(array $arguments): void;
+    public function execute(array $arguments): void;
 }

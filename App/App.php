@@ -4,11 +4,11 @@ namespace App;
 
 use App\Commands\ConvertSilencesIntoChaptersCommand;
 use App\Service\AudioService;
-use App\Service\XmlAudioSilenceSilenceParser;
-use App\Service\JsonChapterConverter;
 use App\Service\ChapterService;
 use App\Service\FileService;
+use App\Service\JsonChapterConverter;
 use App\Service\SilenceService;
+use App\Service\XmlAudioSilenceSilenceParser;
 
 class App
 {
@@ -48,6 +48,6 @@ class App
         $audioService = new AudioService($silenceService, $chapterService);
 
         $command = new ConvertSilencesIntoChaptersCommand($fileService, $audioSilenceParser, $chapterConverter, $audioService);
-        $command->doExecute($params);
+        $command->execute($params);
     }
 }

@@ -9,7 +9,7 @@ abstract class AbstractCommand implements CommandInterface
 {
     /**
      * @var string[]
-    */
+     */
     protected array $requiredOptions = [];
 
     /**
@@ -17,17 +17,17 @@ abstract class AbstractCommand implements CommandInterface
      *
      * @throws Exception
      */
-    abstract public function execute(array $arguments);
+    abstract protected function doExecute(array $arguments);
 
     /**
      * @param array $arguments
      *
      * @throws Exception
      */
-    public function doExecute(array $arguments): void
+    public function execute(array $arguments): void
     {
         $this->validateRequired($arguments);
-        $this->execute($arguments);
+        $this->doExecute($arguments);
     }
 
     /**
@@ -35,16 +35,17 @@ abstract class AbstractCommand implements CommandInterface
      *
      * @throws Exception
      */
-    private function validateRequired(array $arguments): void {
+    private function validateRequired(array $arguments): void
+    {
         $requiredOptions = $this->requiredOptions;
         $missingOptions = [];
         foreach ($requiredOptions as $requiredOption) {
-            if(!isset($arguments[$requiredOption])) {
+            if (!isset($arguments[$requiredOption])) {
                 $missingOptions[] = $requiredOption;
             }
         }
 
-        if(count($missingOptions) > 0) {
+        if (count($missingOptions) > 0) {
             throw new Exception(sprintf('Options "%s" are required', implode(',', $missingOptions)));
         }
     }

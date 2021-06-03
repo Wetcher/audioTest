@@ -3,8 +3,8 @@
 namespace App\Service;
 
 use App\Model\TimePeriod;
-use App\Service\ServiceInterface\XmlAudioSilenceParserInterface;
 use App\Service\ServiceInterface\FileServiceInterface;
+use App\Service\ServiceInterface\XmlAudioSilenceParserInterface;
 use Carbon\CarbonInterval;
 use Exception;
 

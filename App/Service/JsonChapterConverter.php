@@ -10,7 +10,7 @@ class JsonChapterConverter implements JsonChapterConverterInterface
     /**
      * @param Chapter[] $chapters
      *
-     * @return astringrray
+     * @return string
      */
     public function convertToJson(array $chapters): string
     {

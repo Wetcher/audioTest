@@ -2,7 +2,12 @@
 
 namespace App\Commands;
 
+use Exception;
+
 interface CommandInterface
 {
-    public function execute(array $args): void;
+    /**
+     * @throws Exception;
+     */
+    public function execute(): void;
 }

@@ -9,8 +9,22 @@ use App\Service\ServiceInterface\FileServiceInterface;
 use Carbon\CarbonInterval;
 use Exception;
 
-class ConvertSilencesIntoChaptersCommand implements CommandInterface
+class ConvertSilencesIntoChaptersCommand extends AbstractCommand
 {
+    protected array $argumentOptions = [
+        "path:",
+        "silence-chapter-duration:",
+        "max-segment-duration:",
+        "silence-segment-duration:",
+    ];
+
+    protected array $requiredOptions = [
+        "path",
+        "silence-chapter-duration",
+        "max-segment-duration",
+        "silence-segment-duration",
+    ];
+
     /**
      * @var XmlAudioSilenceParserInterface
      */
@@ -41,6 +55,8 @@ class ConvertSilencesIntoChaptersCommand implements CommandInterface
      */
     public function __construct(FileServiceInterface $fileService, XmlAudioSilenceParserInterface $audioServiceParser, JsonChapterConverterInterface $chapterConverter, AudioServiceInterface $audioService)
     {
+        parent::__construct();
+
         $this->fileService = $fileService;
         $this->audioServiceParser = $audioServiceParser;
         $this->chapterConverter = $chapterConverter;
@@ -52,8 +68,11 @@ class ConvertSilencesIntoChaptersCommand implements CommandInterface
      *
      * @throws Exception
      */
-    public function execute(array $args): void
+    public function execute(): void
     {
+        parent::execute();
+
+        $args = $this->getArguments();
         $path = $args['path'] ?? '';
         $silenceChapterDuration = CarbonInterval::fromString(($args['silence-chapter-duration'] ?? ''))->total('milliseconds');
         $maxSegmentDuration = CarbonInterval::fromString($args['max-segment-duration'] ?? '')->total('milliseconds');

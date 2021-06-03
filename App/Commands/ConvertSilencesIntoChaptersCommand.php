@@ -66,7 +66,7 @@ class ConvertSilencesIntoChaptersCommand implements CommandInterface
         $silenceDurations = $this->audioServiceParser->parseFile($path);
 
         $chapters = $this->audioService->convertSilenceIntervalsToChapters($silenceDurations, $silenceChapterDuration, $maxSegmentDuration, $silenceSegmentDuration);
-        $answerJson = $this->chapterConverter->convertToJson($chapters);
+        $answerJson = $this->chapterConverter->convert($chapters);
 
         $outputFile = $this->fileService->filePath('output.json');
         file_put_contents($outputFile, $answerJson);

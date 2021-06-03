@@ -12,7 +12,7 @@ class JsonChapterConverter implements JsonChapterConverterInterface
      *
      * @return string
      */
-    public function convertToJson(array $chapters): string
+    public function convert(array $chapters): string
     {
         $prepareJson = [];
         foreach ($chapters as $chapterIndex => $chapter) {

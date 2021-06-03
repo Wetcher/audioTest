@@ -13,5 +13,5 @@ interface JsonChapterConverterInterface
      *
      * @return string
      */
-    public function convertToJson(array $chapters): string;
+    public function convert(array $chapters): string;
 }

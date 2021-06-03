@@ -11,13 +11,6 @@ use Exception;
 
 class ConvertSilencesIntoChaptersCommand extends AbstractCommand
 {
-    protected array $argumentOptions = [
-        "path:",
-        "silence-chapter-duration:",
-        "max-segment-duration:",
-        "silence-segment-duration:",
-    ];
-
     protected array $requiredOptions = [
         "path",
         "silence-chapter-duration",
@@ -64,13 +57,13 @@ class ConvertSilencesIntoChaptersCommand extends AbstractCommand
     }
 
     /**
-     * @param array $args
+     * @param array $arguments
      *
      * @throws Exception
      */
-    public function execute(): void
+    public function execute($arguments): void
     {
-        parent::execute();
+        parent::execute($arguments);
 
         $args = $this->getArguments();
         $path = $args['path'] ?? '';

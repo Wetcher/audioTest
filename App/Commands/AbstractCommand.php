@@ -32,19 +32,22 @@ abstract class AbstractCommand implements CommandInterface
     }
 
     /**
+     * @param array $aguments
+     *
      * @throws Exception
      */
-    public function execute(): void
+    public function execute(array $aguments): void
     {
-        $this->validateRequired();
+        $this->validateRequired($aguments);
     }
 
     /**
+     * @param array $arguments
+     *
      * @throws Exception
      */
-    private function validateRequired(): void {
+    private function validateRequired(array $arguments): void {
         $requiredOptions = $this->requiredOptions;
-        $arguments = $this->getArguments();
         $missingOptions = [];
         foreach ($requiredOptions as $requiredOption) {
             if(!isset($arguments[$requiredOption])) {

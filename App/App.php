@@ -32,6 +32,13 @@ class App
      */
     public function run(): void
     {
+        $params = getopt('', [
+            "path:",
+            "silence-chapter-duration:",
+            "max-segment-duration:",
+            "silence-segment-duration:",
+        ]);
+
         $fileService = new FileService($this->basePath);
         $chapterConverter = new JsonChapterConverter();
         $audioSilenceParser = new XmlAudioSilenceSilenceParser($fileService);
@@ -41,6 +48,6 @@ class App
         $audioService = new AudioService($silenceService, $chapterService);
 
         $command = new ConvertSilencesIntoChaptersCommand($fileService, $audioSilenceParser, $chapterConverter, $audioService);
-        $command->execute();
+        $command->execute($params);
     }
 }

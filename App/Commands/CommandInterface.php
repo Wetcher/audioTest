@@ -7,7 +7,9 @@ use Exception;
 interface CommandInterface
 {
     /**
-     * @throws Exception;
+     * @param array $arguments
+     *
+     * @throws Exception
      */
-    public function execute(): void;
+    public function execute(array $arguments): void;
 }

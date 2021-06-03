@@ -38,14 +38,8 @@ class SilenceService implements SilenceServiceInterface
         }
 
         // Need this last step to add audio segment after last silence
-        if (count($chapterSegments) > 1) {
-            $chapterSegments[] = new TimePeriod($silenceIntervals[count($silenceIntervals) - 1]->getEndDuration(), null);
-            $chapters[] = new Chapter($chapterSegments);
-        } else {
-            $chapters[] = new Chapter([
-                new TimePeriod($silenceIntervals[count($silenceIntervals) - 1]->getEndDuration(), null),
-            ]);
-        }
+        $chapterSegments[] = new TimePeriod($silenceIntervals[count($silenceIntervals) - 1]->getEndDuration(), null);
+        $chapters[] = new Chapter($chapterSegments);
 
         return $chapters;
     }

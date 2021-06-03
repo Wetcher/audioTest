@@ -23,14 +23,6 @@ abstract class AbstractCommand implements CommandInterface
     private array $arguments = [];
 
     /**
-     * AbstractCommand constructor.
-     */
-    public function __construct()
-    {
-        $arguments = getopt('', $this->argumentOptions);
-    }
-
-    /**
      * @param array $arguments
      *
      * @throws Exception

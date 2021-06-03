@@ -7,7 +7,7 @@ class Chapter
     /**
      * @var TimePeriod[]
      */
-    private $segments;
+    private array $segments;
 
     /**
      * Chapter constructor.

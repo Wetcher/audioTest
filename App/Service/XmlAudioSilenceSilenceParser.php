@@ -3,20 +3,21 @@
 namespace App\Service;
 
 use App\Model\TimePeriod;
-use App\Service\ServiceInterface\AudioServiceParserInterface;
+use App\Service\ServiceInterface\XmlAudioSilenceParserInterface;
 use App\Service\ServiceInterface\FileServiceInterface;
 use Carbon\CarbonInterval;
 use Exception;
 
-class AudioSilenceParser implements AudioServiceParserInterface
+class XmlAudioSilenceSilenceParser implements XmlAudioSilenceParserInterface
 {
     /**
      * @var FileServiceInterface
      */
-    private $fileService;
+    private FileServiceInterface $fileService;
 
     /**
      * AudioSilenceParser constructor.
+     *
      * @param FileServiceInterface $fileService
      */
     public function __construct(FileServiceInterface $fileService)

@@ -4,8 +4,8 @@ namespace App;
 
 use App\Commands\ConvertSilencesIntoChaptersCommand;
 use App\Service\AudioService;
-use App\Service\AudioSilenceParser;
-use App\Service\ChapterConverter;
+use App\Service\XmlAudioSilenceSilenceParser;
+use App\Service\JsonChapterConverter;
 use App\Service\ChapterService;
 use App\Service\FileService;
 use App\Service\SilenceService;
@@ -15,7 +15,7 @@ class App
     /**
      * @var string
      */
-    private $basePath;
+    private string $basePath;
 
     /**
      * App constructor.
@@ -40,8 +40,8 @@ class App
         ]);
 
         $fileService = new FileService($this->basePath);
-        $chapterConverter = new ChapterConverter();
-        $audioSilenceParser = new AudioSilenceParser($fileService);
+        $chapterConverter = new JsonChapterConverter();
+        $audioSilenceParser = new XmlAudioSilenceSilenceParser($fileService);
 
         $chapterService = new ChapterService();
         $silenceService = new SilenceService();

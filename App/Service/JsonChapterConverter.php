@@ -3,31 +3,31 @@
 namespace App\Service;
 
 use App\Model\Chapter;
-use App\Service\ServiceInterface\ChapterConverterInterface;
+use App\Service\ServiceInterface\JsonChapterConverterInterface;
 
-class ChapterConverter implements ChapterConverterInterface
+class JsonChapterConverter implements JsonChapterConverterInterface
 {
     /**
      * @param Chapter[] $chapters
      *
-     * @return array
+     * @return astringrray
      */
-    public function convertToJson(array $chapters): array
+    public function convertToJson(array $chapters): string
     {
-        $json = [];
+        $prepareJson = [];
         foreach ($chapters as $chapterIndex => $chapter) {
             $chapterSegments = $chapter->getSegments();
 
             foreach ($chapterSegments as $segmentIndex => $chapterSegment) {
                 $title = sprintf('Chapter %s, part %s', $chapterIndex + 1, $segmentIndex + 1);
                 $offset = $chapterSegment->getStartDuration();
-                $json[] = [
+                $prepareJson[] = [
                     'title' => $title,
                     'offset' => $offset ? $offset->spec() : false,
                 ];
             }
         }
 
-        return $json;
+        return json_encode($prepareJson, JSON_PRETTY_PRINT);
     }
 }

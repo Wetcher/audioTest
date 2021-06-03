@@ -3,8 +3,8 @@
 namespace App\Commands;
 
 use App\Service\ServiceInterface\AudioServiceInterface;
-use App\Service\ServiceInterface\AudioServiceParserInterface;
-use App\Service\ServiceInterface\ChapterConverterInterface;
+use App\Service\ServiceInterface\XmlAudioSilenceParserInterface;
+use App\Service\ServiceInterface\JsonChapterConverterInterface;
 use App\Service\ServiceInterface\FileServiceInterface;
 use Carbon\CarbonInterval;
 use Exception;
@@ -12,34 +12,34 @@ use Exception;
 class ConvertSilencesIntoChaptersCommand implements CommandInterface
 {
     /**
-     * @var AudioServiceParserInterface
+     * @var XmlAudioSilenceParserInterface
      */
-    private $audioServiceParser;
+    private XmlAudioSilenceParserInterface $audioServiceParser;
 
     /**
-     * @var ChapterConverterInterface
+     * @var JsonChapterConverterInterface
      */
-    private $chapterConverter;
+    private JsonChapterConverterInterface $chapterConverter;
 
     /**
      * @var AudioServiceInterface
      */
-    private $audioService;
+    private AudioServiceInterface $audioService;
 
     /**
      * @var FileServiceInterface
      */
-    private $fileService;
+    private FileServiceInterface $fileService;
 
     /**
      * ConvertSilencesIntoChaptersCommand constructor.
      *
      * @param FileServiceInterface $fileService
-     * @param AudioServiceParserInterface $audioServiceParser
-     * @param ChapterConverterInterface $chapterConverter
+     * @param XmlAudioSilenceParserInterface $audioServiceParser
+     * @param JsonChapterConverterInterface $chapterConverter
      * @param AudioServiceInterface $audioService
      */
-    public function __construct(FileServiceInterface $fileService, AudioServiceParserInterface $audioServiceParser, ChapterConverterInterface $chapterConverter, AudioServiceInterface $audioService)
+    public function __construct(FileServiceInterface $fileService, XmlAudioSilenceParserInterface $audioServiceParser, JsonChapterConverterInterface $chapterConverter, AudioServiceInterface $audioService)
     {
         $this->fileService = $fileService;
         $this->audioServiceParser = $audioServiceParser;
@@ -69,6 +69,6 @@ class ConvertSilencesIntoChaptersCommand implements CommandInterface
         $answerJson = $this->chapterConverter->convertToJson($chapters);
 
         $outputFile = $this->fileService->filePath('output.json');
-        file_put_contents($outputFile, json_encode($answerJson, JSON_PRETTY_PRINT));
+        file_put_contents($outputFile, $answerJson);
     }
 }

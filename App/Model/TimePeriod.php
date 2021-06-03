@@ -9,12 +9,12 @@ class TimePeriod
     /**
      * @var CarbonInterval|null
      */
-    private $startDuration;
+    private ?CarbonInterval $startDuration;
 
     /**
      * @var CarbonInterval|null
      */
-    private $endDuration;
+    private ?CarbonInterval $endDuration;
 
     /**
      * TimePeriod constructor.

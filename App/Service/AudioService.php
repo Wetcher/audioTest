@@ -13,13 +13,19 @@ class AudioService implements AudioServiceInterface
     /**
      * @var SilenceServiceInterface
      */
-    private $silenceService;
+    private SilenceServiceInterface $silenceService;
 
     /**
      * @var ChapterServiceInterface
      */
-    private $chapterService;
+    private ChapterServiceInterface $chapterService;
 
+    /**
+     * AudioService constructor.
+     *
+     * @param SilenceServiceInterface $silenceService
+     * @param ChapterServiceInterface $chapterService
+     */
     public function __construct(SilenceServiceInterface $silenceService, ChapterServiceInterface $chapterService)
     {
         $this->silenceService = $silenceService;

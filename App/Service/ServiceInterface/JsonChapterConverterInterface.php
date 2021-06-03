@@ -6,12 +6,12 @@ namespace App\Service\ServiceInterface;
 
 use App\Model\Chapter;
 
-interface ChapterConverterInterface
+interface JsonChapterConverterInterface
 {
     /**
      * @param Chapter[] $chapters
      *
-     * @return array
+     * @return string
      */
-    public function convertToJson(array $chapters): array;
+    public function convertToJson(array $chapters): string;
 }

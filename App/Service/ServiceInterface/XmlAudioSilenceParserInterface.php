@@ -5,7 +5,7 @@ namespace App\Service\ServiceInterface;
 use App\Model\TimePeriod;
 use Exception;
 
-interface AudioServiceParserInterface
+interface XmlAudioSilenceParserInterface
 {
     /**
      * @param string $path

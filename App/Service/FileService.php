@@ -9,7 +9,7 @@ class FileService implements FileServiceInterface
     /**
      * @var string
      */
-    private $appBasePath;
+    private string $appBasePath;
 
     /**
      * FileService constructor.

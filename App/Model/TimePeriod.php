@@ -36,9 +36,11 @@ class TimePeriod
         if ($this->startDuration && $this->endDuration) {
             $startMs = $this->startDuration->total('milliseconds');
             $endMs = $this->endDuration->total('milliseconds');
+
+            return $endMs - $startMs;
         }
 
-        return $endMs - $startMs;
+        return -1;
     }
 
     /**
@@ -47,14 +49,6 @@ class TimePeriod
     public function getStartDuration(): ?CarbonInterval
     {
         return $this->startDuration;
-    }
-
-    /**
-     * @param CarbonInterval|null $startDuration
-     */
-    public function setStartDuration(?CarbonInterval $startDuration): void
-    {
-        $this->startDuration = $startDuration;
     }
 
     /**

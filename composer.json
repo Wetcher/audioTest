@@ -1,0 +1,14 @@
+{
+    "name": "test/audio",
+    "require": {
+      "symfony/var-dumper": "^5.3",
+      "nesbot/carbon": "^2.48",
+      "ext-json": "*",
+      "ext-simplexml": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "App"
+        }
+    }
+}

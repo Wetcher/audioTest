@@ -1,0 +1,10 @@
+Start example
+bin/composer.sh install
+bin/php.sh /app/command.php --path="silence-files/silence1.xml" --silence-chapter-duration=PT3S --max-segment-duration=PT200S --silence-segment-duration=PT2S
+
+--path: The path to an XML file with silence intervals
+--silence-chapter-duration: The silence duration which reliably indicates a chapter transition
+--max-segment-duration: The maximum duration of a segment, after which the chapter will be broken up into multiple segments
+--silence-segment-duration: A silence duration which can be used to split a long chapter (always shorter than the silence duration used to split chapters)
+
+Output: output.json

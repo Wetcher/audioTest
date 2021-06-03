@@ -61,7 +61,7 @@ class ConvertSilencesIntoChaptersCommand extends AbstractCommand
      *
      * @throws Exception
      */
-    public function execute($arguments): void
+    public function execute(array $arguments): void
     {
         parent::execute($arguments);
 

@@ -28,17 +28,17 @@ abstract class AbstractCommand implements CommandInterface
     public function __construct()
     {
         $arguments = getopt('', $this->argumentOptions);
-        $this->setArguments($arguments);
     }
 
     /**
-     * @param array $aguments
+     * @param array $arguments
      *
      * @throws Exception
      */
-    public function execute(array $aguments): void
+    public function execute(array $arguments): void
     {
-        $this->validateRequired($aguments);
+        $this->setArguments($arguments);
+        $this->validateRequired($arguments);
     }
 
     /**

@@ -29,6 +29,8 @@ class XmlAudioSilenceSilenceParser implements XmlAudioSilenceParserInterface
      * @param string $path
      *
      * @return TimePeriod[]
+     *
+     * @throws Exception
      */
     public function parseFile(string $path): array
     {

@@ -61,10 +61,10 @@ class ConvertSilencesIntoChaptersCommand extends AbstractCommand
      */
     protected function doExecute(array $arguments): void
     {
-        $path = $arguments['path'] ?? '';
-        $silenceChapterDuration = CarbonInterval::fromString(($arguments['silence-chapter-duration'] ?? ''))->total('milliseconds');
-        $maxSegmentDuration = CarbonInterval::fromString($arguments['max-segment-duration'] ?? '')->total('milliseconds');
-        $silenceSegmentDuration = CarbonInterval::fromString($arguments['silence-segment-duration'] ?? '')->total('milliseconds');
+        $path = $arguments['path'];
+        $silenceChapterDuration = CarbonInterval::fromString(($arguments['silence-chapter-duration']))->total('milliseconds');
+        $maxSegmentDuration = CarbonInterval::fromString($arguments['max-segment-duration'])->total('milliseconds');
+        $silenceSegmentDuration = CarbonInterval::fromString($arguments['silence-segment-duration'])->total('milliseconds');
 
         if ($silenceChapterDuration <= $silenceSegmentDuration) {
             throw new Exception('Segment chapter silence duration is greater then chapter silence duration');
